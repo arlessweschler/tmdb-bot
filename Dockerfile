@@ -16,7 +16,7 @@ RUN go build -installsuffix 'static' -o /bin/tmdbbot
 
 ## production
 FROM alpine:3.12 as production
-COPY --from=builder /bin/tmdb-bot /bin/tmdbbot
+COPY --from=builder /bin/tmdbbot /bin/tmdbbot
 
 USER nobody
 
