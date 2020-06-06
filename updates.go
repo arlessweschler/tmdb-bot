@@ -1,11 +1,9 @@
 package main
 
 import (
-	"bytes"
 	"context"
 	"log"
 	"sync"
-	"text/template"
 
 	tmdb "github.com/cyruzin/golang-tmdb"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
@@ -106,18 +104,4 @@ func buildArticles(movies []Movie) ([]interface{}, error) {
 	}
 
 	return articles, nil
-}
-
-func buildMessage(m Movie) (string, error) {
-	tpl, err := template.New("message_article").ParseFiles("./templates/message_article")
-	if err != nil {
-		return "", err
-	}
-
-	var tplBuff bytes.Buffer
-	if err := tpl.Execute(&tplBuff, m); err != nil {
-		return "", err
-	}
-
-	return tplBuff.String(), nil
 }
